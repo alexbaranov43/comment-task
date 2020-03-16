@@ -20,10 +20,10 @@ class CommentController extends Controller
         //
         $comments = Comment::select(
             'comments.comment',
-            'comments.user_id',
             'comments.created_at',
-            'users.name',
-            'users.email'
+            'users.name as name',
+            'users.email as email',
+            'users.id as id'
         )
         ->join('users', 'users.id', '=', 'comments.user_id')
         ->get();
@@ -39,15 +39,14 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $data = $request->data();
+        //create new comment instance with passed comment and user id
         $comment = new Comment([
-            'comment' => $data['comment'],
-            'name' => $data['name'],
-            'email' => $data['email']
+            'comment' => $request->get('comment'),
+            'user_id' => $request->get('user_id')
         ]);
+        $comment->save();
 
-        return new CommentResource($comment);
+        return response()->json(null, 200);
     }
 
     /**
