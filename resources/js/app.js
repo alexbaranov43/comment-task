@@ -22,6 +22,7 @@ window.Vue = require('vue');
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('comment-form-component', require('./components/CommentForm.vue').default);
+Vue.component('comment-list-component', require('./components/CommentList.vue').default);
 Vue.component('post-component', require('./components/Post.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

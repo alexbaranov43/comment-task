@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Comment;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\CommentResourceCollection;
+use Symfony\Component\HttpFoundation\Response;
 
 class CommentController extends Controller
 {
@@ -17,18 +18,20 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
-        $comments = Comment::select(
+        return response()->json([
+
+            'comments' =>  Comment::select(
             'comments.comment',
             'comments.created_at',
             'users.name as name',
             'users.email as email',
-            'users.id as id'
+            'users.id as user_id'
         )
         ->join('users', 'users.id', '=', 'comments.user_id')
-        ->get();
+        ->orderBy('created_at', 'desc')
+        ->get()
 
-        return new CommentResourceCollection($comments);
+        ], Response::HTTP_OK);
     }
 
     /**
