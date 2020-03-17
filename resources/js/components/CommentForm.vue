@@ -1,15 +1,20 @@
 <template>
   <div>
-    <form class="commentBox" @submit.prevent="submit" method="POST">
-        <div class="form-group">
-            <label for="comment">Comment</label>
-            <input type="hidden" class="form-control" id="user_id" name="user_id" rows="5" value="1" v-model="fields.user_id">
-            <textarea class="form-control" id="comment" name="comment" rows="5" v-model="fields.comment" required></textarea>
-            <div v-if="errors && errors.comment" class="text-danger">{{ errors.comment[0] }}</div>
-        </div>
-        <button class="btn btn-danger" @click='cancel()'>Cancel</button>
-        <button type="submit" class="btn btn-primary">Post Comment</button>
-    </form>
+    <flash message=""></flash>
+    <div class="commentBox">
+      <form @submit.prevent="submit" method="POST">
+          <div class="form-group">
+              <label for="comment">Comment</label>
+              <input type="hidden" class="form-control" id="user_id" name="user_id" rows="5" value="1" v-model="fields.user_id">
+              <textarea class="form-control" id="comment" name="comment" rows="5" v-model="fields.comment" required></textarea>
+              <div v-if="errors && errors.comment" class="text-danger">{{ errors.comment[0] }}</div>
+          </div>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
+      </form>
+      <br>
+      <button class="btn btn-danger cancel-button" @click='cancel()'>Cancel</button>
+    </div>
+    <br><br>
     <div v-for="comment in comments" :key="comment.created_at">
       <comment-list-component v-bind:name="comment.name" v-bind:email="comment.email" v-bind:comment="comment.comment" v-bind:time="comment.created_at"></comment-list-component>
     </div>
@@ -30,6 +35,7 @@ export default {
       success: false,
       loaded: true,
       comments: {},
+      showDismissibleAlert: false
     }
   },
   methods: {
@@ -45,9 +51,11 @@ export default {
           this.loaded = true;
           this.success = true;
           $('form').hide()
-          $('.show-button').css('display', 'block')
+          $('.cancel-button').hide()
+          $('.show-button').removeAttr('disabled')
           this.$emit('comment applied')
           this.getComments()
+          flash('Comment Successfully Added.', 'success');
         }).catch(error => {
           this.loaded = true;
           if (error.response.status === 422) {
@@ -57,17 +65,26 @@ export default {
       }
     },
     cancel() {
+      this.fields = {}; //Clear input fields.
       $('form').hide();
-      $('.show-button').css('display', 'block');
+      $('.cancel-button').hide();
+      $('.show-button').removeAttr('disabled')
     },
     getComments(){
       axios.get('/comments')
             .then((response)=>{
             this.comments = response.data.comments
             })
-          }
-    },
-    created() {
+            this.thirtySecondRefresh();
+      },
+    thirtySecondRefresh() {
+      // get comments every 30 seconds
+      setTimeout(() => {
+        this.getComments()
+      }, 30000);
+    }
+  },
+  created() {
       this.getComments()
     }
   }

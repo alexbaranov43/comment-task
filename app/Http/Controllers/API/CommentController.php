@@ -5,8 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Comment;
-use App\Http\Resources\CommentResource;
-use App\Http\Resources\CommentResourceCollection;
+use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\Response;
 
 class CommentController extends Controller
@@ -29,9 +28,10 @@ class CommentController extends Controller
         )
         ->join('users', 'users.id', '=', 'comments.user_id')
         ->orderBy('created_at', 'desc')
+        ->limit(5)
         ->get()
 
-        ], Response::HTTP_OK);
+        ], 200);
     }
 
     /**

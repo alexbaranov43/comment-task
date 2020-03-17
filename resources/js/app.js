@@ -7,6 +7,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.events = new Vue();
+window.flash = function(message) {
+    window.events.$emit("flash", message);
+};
 
 /**
  * The following block of code may be used to automatically register your
@@ -24,6 +28,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('comment-form-component', require('./components/CommentForm.vue').default);
 Vue.component('comment-list-component', require('./components/CommentList.vue').default);
 Vue.component('post-component', require('./components/Post.vue').default);
+Vue.component("flash", require("./components/Flash.vue").default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

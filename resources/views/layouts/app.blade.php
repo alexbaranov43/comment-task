@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Comment Maker</title>
     
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Cabin+Condensed|Lobster&display=swap" rel="stylesheet">
+
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     
     <!-- CSRF Token -->
@@ -20,12 +21,41 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
+<style>
+    body {
+        background: #f19066;
+        font-family: 'Lobster', cursive;
+        font-size: 20px
+    }
+    .card-header {
+        background: #f5cd79;
+    }
+
+    .nav-bg, .card {
+        background: #546de5
+    }
+    .navbar-brand, #navbarDropdown, .welcome{
+        font-family: 'Lobster', cursive;
+    }
+    .card-body, .show-button {
+        text-align: center
+    }
+    .card-header {
+        font-family:'Cabin Condensed', sans-serif;
+    }
+    .welcome {
+        font-size: 30px
+    }
+    .show-button {
+        width: 100%;
+    }
+</style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light nav-bg shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Leave A Comment
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
