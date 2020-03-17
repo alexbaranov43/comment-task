@@ -1,6 +1,8 @@
 # INSTALLATION GUIDE
 
 ## Initial Steps
+
+* git clone the repository and CD into the repository in the terminal
 * Make sure MAMP is running!
 
 * Make sure to install Composer globally. If it is not installed globally check out the guide at https://getcomposer.org/doc/00-intro.md
