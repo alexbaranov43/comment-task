@@ -22,29 +22,36 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <style>
-    body {
-        background: #f19066;
+    body, .card-body, {
+        /* background: #f19066; */
         font-family: 'Lobster', cursive;
-        font-size: 20px
+        font-size: 20px;
+
     }
     .card-header {
-        background: #f5cd79;
+        background: #19406e;
     }
 
-    .nav-bg, .card {
-        background: #546de5
+    .card-body {
+        background: #ecf0f1
     }
-    .navbar-brand, #navbarDropdown, .welcome{
+    .nav-bg, .userComments {
+        background: #235c9f;
+    }
+
+    .navbar-brand, #navbarDropdown, .welcome, .card-header, .userComments{
         font-family: 'Lobster', cursive;
+        color: white !important;
     }
     .card-body, .show-button {
         text-align: center
     }
-    .card-header {
+    .card-header, .userComments, #topic-title {
         font-family:'Cabin Condensed', sans-serif;
     }
     .welcome {
-        font-size: 30px
+        font-size: 30px;
+        color: black !important
     }
     .show-button {
         width: 100%;

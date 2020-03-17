@@ -40,5 +40,7 @@
         position: fixed;
         right: 25px;
         bottom: 25px;
+        font-family: 'Lobster', cursive;
+        font-size: 20px;
     }
 </style>

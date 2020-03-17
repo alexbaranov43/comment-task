@@ -1974,7 +1974,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.$emit('comment applied');
 
-          _this.getComments(); // Flash message
+          _this.getComments(); // Flash message success
 
 
           flash('Comment Successfully Added.', 'success');
@@ -1982,6 +1982,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.loaded = true;
 
           if (error.response.status === 422) {
+            // flash message failure
             flash('Incorrect User Id or Comment Value', 'failure');
             _this.errors = error.response.data.errors || {};
           }
@@ -6761,7 +6762,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.userComments[data-v-b2309ffc] {\n  background: #f5cd79;\n  margin: 10px 0;\n  border: chocolate 7px outset;\n  border-radius: 25px;\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.userComments[data-v-b2309ffc] {\n  /* background: #f5cd79; */\n  margin: 10px 0;\n  /* border: gray 5px outset; */\n  /* border-radius: 25px; */\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -6780,7 +6781,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.spacing {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n}\n", ""]);
+exports.push([module.i, "\n.spacing {\n    position: fixed;\n    right: 25px;\n    bottom: 25px;\n    font-family: 'Lobster', cursive;\n    font-size: 20px;\n}\n", ""]);
 
 // exports
 
@@ -38514,14 +38515,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "userComments" }, [
-    _c("p", [_vm._v(_vm._s(this.$attrs.name))]),
-    _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(this.$attrs.email))]),
+  return _c("div", { staticClass: "card userComments" }, [
+    _c("p", [_vm._v(_vm._s(this.$attrs.name) + " Says:")]),
     _vm._v(" "),
     _c("p", [_vm._v(_vm._s(this.$attrs.comment))]),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(this.$attrs.time))])
+    _c("p", [
+      _vm._v("Disagree? "),
+      _c("br"),
+      _vm._v(" Message them at: " + _vm._s(this.$attrs.email))
+    ])
   ])
 }
 var staticRenderFns = []

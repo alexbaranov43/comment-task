@@ -20,7 +20,7 @@
     </div>
     <br><br>
     <!-- Div to create each individual comment box -->
-    <div v-for="comment in comments" :key="comment.created_at">
+    <div class v-for="comment in comments" :key="comment.created_at">
       <comment-list-component v-bind:name="comment.name" v-bind:email="comment.email" v-bind:comment="comment.comment" v-bind:time="comment.created_at"></comment-list-component>
     </div>
   </div>
@@ -61,11 +61,12 @@ export default {
           $('.show-button').removeAttr('disabled')
           this.$emit('comment applied')
           this.getComments()
-          // Flash message
+          // Flash message success
           flash('Comment Successfully Added.', 'success');
         }).catch(error => {
           this.loaded = true;
           if (error.response.status === 422) {
+            // flash message failure
             flash('Incorrect User Id or Comment Value', 'failure')
             this.errors = error.response.data.errors || {};
           }
