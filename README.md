@@ -20,6 +20,8 @@
 
 * In the terminal, run the command `npm run dev`
 
+* In the terminal, run the command `php artisan migrate`
+
 * In the terminal, run the command `php artisan serve` to launch the site on the local Server
 
 ## User Guide
