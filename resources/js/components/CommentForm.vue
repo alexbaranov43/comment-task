@@ -8,7 +8,7 @@
           <div class="form-group">
               <label for="comment">Comment</label>
               <!-- Hidden User ID Input -->
-              <input type="hidden" class="form-control" id="user_id" name="user_id" rows="5" value="1" v-model="fields.user_id">
+              <input type="hidden" class="form-control" id="user_id" name="user_id" rows="5" v-model="fields.user_id">
               <!-- Comment Text Input -->
               <textarea class="form-control" id="comment" name="comment" rows="5" v-model="fields.comment" required></textarea>
               <div v-if="errors && errors.comment" class="text-danger">{{ errors.comment[0] }}</div>
@@ -59,7 +59,6 @@ export default {
           $('form').hide()
           $('.cancel-button').hide()
           $('.show-button').removeAttr('disabled')
-          this.$emit('comment applied')
           this.getComments()
           // Flash message success
           flash('Comment Successfully Added.', 'success');

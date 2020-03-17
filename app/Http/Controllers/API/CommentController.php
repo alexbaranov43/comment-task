@@ -46,15 +46,20 @@ class CommentController extends Controller
         $this->validate($request, [
             'user_id' => 'required|integer',
             'comment' => 'required|max:140'
-        ]);
-        //create new comment instance with passed comment and user id
-        $comment = new Comment([
-            'comment' => $request->get('comment'),
-            'user_id' => $request->get('user_id')
-        ]);
+            ]);
+
+        // unauthorized user if user id is invalid
+        if (auth()->id()!= $request->get('user_id') || is_null($request->get('user_id'))) {
+            abort(401);
+        }
+            //create new comment instance with passed comment and user id
+            $comment = new Comment([
+                'comment' => $request->get('comment'),
+                'user_id' => $request->get('user_id')
+                ]);
         $comment->save();
 
-        return response()->json(null, 200);
+        return response()->json('it worked', 200);
     }
 
     /**
