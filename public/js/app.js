@@ -1936,6 +1936,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1961,20 +1966,23 @@ __webpack_require__.r(__webpack_exports__);
           _this.fields = {}; //Clear input fields.
 
           _this.loaded = true;
-          _this.success = true;
+          _this.success = true; // hide and show logic upon success
+
           $('form').hide();
           $('.cancel-button').hide();
           $('.show-button').removeAttr('disabled');
 
           _this.$emit('comment applied');
 
-          _this.getComments();
+          _this.getComments(); // Flash message
+
 
           flash('Comment Successfully Added.', 'success');
         })["catch"](function (error) {
           _this.loaded = true;
 
           if (error.response.status === 422) {
+            flash('Incorrect User Id or Comment Value', 'failure');
             _this.errors = error.response.data.errors || {};
           }
         });
@@ -1995,12 +2003,14 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.thirtySecondRefresh();
     },
+    // get comments every 30 seconds
     thirtySecondRefresh: function thirtySecondRefresh() {
       var _this3 = this;
 
-      // get comments every 30 seconds
       setTimeout(function () {
         _this3.getComments();
+
+        console.log("This will load the last 5 comments every 30 seconds, if you don't believe me check the network tab :)");
       }, 30000);
     }
   },
@@ -2135,6 +2145,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -38620,6 +38631,8 @@ var render = function() {
     "div",
     [
       _c("h3", [_vm._v("Topic of Discussion")]),
+      _vm._v(" "),
+      _c("h1", { attrs: { id: "topic-title" } }, [_vm._v("PINEAPPLE PIZZA")]),
       _vm._v(" "),
       _c("img", {
         staticClass: "post-image",

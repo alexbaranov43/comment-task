@@ -42,6 +42,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        //validate inputs
+        $this->validate($request, [
+            'user_id' => 'required|integer',
+            'comment' => 'required|max:140'
+        ]);
         //create new comment instance with passed comment and user id
         $comment = new Comment([
             'comment' => $request->get('comment'),

@@ -1,6 +1,7 @@
 <template>
   <div>
     <h3>Topic of Discussion</h3>
+    <h1 id="topic-title">PINEAPPLE PIZZA</h1>
     <img class="post-image" src="https://cdn.i-scmp.com/sites/default/files/styles/768x768/public/d8/images/methode/2019/03/14/5cacc3ac-4547-11e9-b5dc-9921d5eb8a6d_image_hires_110410.jpg?itok=9a_yNxcN&v=1552532658" alt="Pineapple Pizza">
     <br><br>
     <button style="width:100%" class="btn btn-primary show-button" @click="showCommentBox()">Leave a comment.</button>
